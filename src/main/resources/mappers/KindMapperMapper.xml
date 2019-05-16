@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cur.pro.mapper.KindMapperMapper" >
+  <resultMap id="BaseResultMap" type="cur.pro.entity.KindMapper" >
+    <constructor >
+      <arg column="article" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="kind" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="cur.pro.entity.KindMapper" >
+    insert into kindmapper (article, kind)
+    values (#{article,jdbcType=INTEGER}, #{kind,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cur.pro.entity.KindMapper" >
+    insert into kindmapper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="article != null" >
+        article,
+      </if>
+      <if test="kind != null" >
+        kind,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="article != null" >
+        #{article,jdbcType=INTEGER},
+      </if>
+      <if test="kind != null" >
+        #{kind,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
