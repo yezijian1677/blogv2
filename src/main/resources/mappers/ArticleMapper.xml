@@ -168,4 +168,73 @@
       catagory_id = #{catagoryId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectById" parameterType="Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from article
+    where id = #{id, jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from article
+    where id = #{id, jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByIds" parameterType="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from article
+    <where>
+      id in
+      <foreach collection="ids" item="id" separator="," open="(" close=")">
+        #{id}
+      </foreach>
+    </where>
+  </select>
+
+  <select id="selectByYearOrderByDate" parameterType="Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from article
+    where time regexp #{year} order by `ctime` desc
+  </select>
+
+  <select id="selectAllOrderByDate" parameterType="Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from article
+    order by `ctime` desc
+  </select>
+
+  <select id="selectByIdsAndInfo" parameterType="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from article
+    <where>
+      id in
+      <foreach collection="ids" item="id" separator="," open="(" close=")">
+        #{id}
+      </foreach>
+      or `title` like CONCAT('%', #{info, jdbcType=VARCHAR}, '%')
+      or `describe` like CONCAT('%', #{info, jdbcType=VARCHAR}, '%')
+      or `keywords` like CONCAT('%', #{info, jdbcType=VARCHAR}, '%')
+    </where>
+  </select>
+
+  <select id="selectByInfo" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from article
+    where
+         `title` like CONCAT('%', #{info, jdbcType=VARCHAR}, '%')
+      or `describe` like CONCAT('%', #{info, jdbcType=VARCHAR}, '%')
+      or `keywords` like CONCAT('%', #{info, jdbcType=VARCHAR}, '%')
+
+  </select>
+
+
+
 </mapper>
