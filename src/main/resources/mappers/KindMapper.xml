@@ -57,4 +57,33 @@
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAll" resultType="cur.pro.entity.Kind">
+    select
+    <include refid="Base_Column_List"/>
+    from kind;
+  </select>
+
+  <select id="selectByIds" parameterType="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from kind
+    <where>
+      id in
+      <foreach collection="ids" item="id" separator="," open="(" close=")">
+        #{id}
+      </foreach>
+    </where>
+  </select>
+
+  <select id="selectByName" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from kind
+    where `name` = #{name, jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectIdByLikeName" parameterType="string" resultType="Integer">
+    select id from kind where `name` like concat('%', #{info, jdbcType=VARCHAR}, '%')
+  </select>
 </mapper>
