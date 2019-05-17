@@ -12,6 +12,10 @@
       <arg column="stat" jdbcType="TINYINT" javaType="java.lang.Byte" />
     </constructor>
   </resultMap>
+
+  <sql id="Base_Column_List">
+    uid, token, expired_time, ip, device, citme, stat
+  </sql>
   <insert id="insert" parameterType="cur.pro.entity.Token" >
     insert into token (uid, token, expired_time, 
       ip, device, ctime, 
@@ -69,4 +73,38 @@
       </if>
     </trim>
   </insert>
+
+  <select id="selectByToken" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from token
+    where token = #{token, jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByTokenAndStat" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from token
+    where token = #{token, jdbcType=VARCHAR} and stat = #{stat, jdbcType=TINYINT}
+  </select>
+
+  <select id="selectByUid" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from token
+    where uid = #{uid, jdbcType=INTEGER}
+  </select>
+
+  <update id="updateStatByDate">
+    update token set stat = #{stat, jdbcType=TINYINT}
+    where expired_time < #{date, jdbcType=TIMESTAMP}
+  </update>
+
+  <update id="updateStatByToken">
+    update token set stat = #{stat, jdbcType=TINYINT}
+    where token = #{token, jdbcType=VARCHAR}
+  </update>
+
+
+
 </mapper>
