@@ -127,4 +127,11 @@
       stat = #{stat,jdbcType=TINYINT}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByName" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from user
+    where user_name = #{username, jdbcType=VARCHAR}
+  </select>
 </mapper>
