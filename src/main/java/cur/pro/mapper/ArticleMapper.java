@@ -36,4 +36,9 @@ public interface ArticleMapper {
                                      @Param(value = "info")String info);
 
     List<Article> selectByInfo(String info);
+
+    int selectNums();
+
+    List<Article> selectByPage(@Param(value = "startPos") Integer startPos,
+                               @Param(value = "size") Integer size);
 }

@@ -6,10 +6,7 @@ import cur.pro.mapper.*;
 import cur.pro.mapper.KindMapper;
 import cur.pro.mapper.TagMapper;
 import cur.pro.services.UserService;
-import cur.pro.utils.JsonUtil;
-import cur.pro.utils.MsgCenter;
-import cur.pro.utils.RedisPoolUtil;
-import cur.pro.utils.Result;
+import cur.pro.utils.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,6 +136,15 @@ public class UserServiceImpl implements UserService {
         }
         articleMapper.deleteByPrimaryKey(articleId);
         return Result.success();
+    }
+    //TODO
+    public Result getArticles(int page) {
+        PageUtil pageUtil = new PageUtil(articleMapper.selectNums(), page);
+        List<Article> articles = articleMapper.selectByPage(pageUtil.getStartPos(), pageUtil.getSize());
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("article", paresArticleDTO(articles));
+        map.put("page", pageUtil);
+        return Result.success(map);
     }
 
     public Result getArticleKind(Integer ArticleId) {

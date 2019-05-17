@@ -52,6 +52,13 @@ public interface UserService {
     Result deleteArticle(Integer articleId);
 
     /**
+     * 分页
+     * @param page
+     * @return
+     */
+    Result getArticles(int page);
+
+    /**
      * 获取文章分类
      * @param ArticleId
      * @return
