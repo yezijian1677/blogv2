@@ -57,4 +57,27 @@
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByIds" parameterType="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tag
+    <where>
+      id in
+      <foreach collection="ids" item="id" separator="," open="(" close=")">
+        #{id}
+      </foreach>
+    </where>
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tag
+  </select>
+
+  <select id="selectIdByLikeName" parameterType="string" resultType="Integer">
+    select id from tag where `name` like caocat('%', #{info, jdbcType=VARCHAR}, '%')
+  </select>
+
 </mapper>
