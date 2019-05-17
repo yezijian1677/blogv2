@@ -2,9 +2,11 @@ package cur.pro.mapper;
 
 import cur.pro.entity.TagMapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface TagMapperMapper {
     int insert(TagMapper record);
 

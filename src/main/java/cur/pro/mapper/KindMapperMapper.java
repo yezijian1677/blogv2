@@ -2,9 +2,11 @@ package cur.pro.mapper;
 
 import cur.pro.entity.KindMapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface KindMapperMapper {
     int insert(KindMapper record);
 

@@ -1,7 +1,9 @@
 package cur.pro.mapper;
 
 import cur.pro.entity.Comment;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CommentMapper {
     int deleteByPrimaryKey(Long id);
 

@@ -1,7 +1,9 @@
 package cur.pro.mapper;
 
 import cur.pro.entity.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
 

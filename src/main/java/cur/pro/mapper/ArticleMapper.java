@@ -2,9 +2,11 @@ package cur.pro.mapper;
 
 import cur.pro.entity.Article;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ArticleMapper {
     int deleteByPrimaryKey(Integer id);
 

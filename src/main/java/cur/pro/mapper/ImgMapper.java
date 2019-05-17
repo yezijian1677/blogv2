@@ -2,9 +2,11 @@ package cur.pro.mapper;
 
 import cur.pro.entity.Img;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ImgMapper {
     int insert(Img record);
 
