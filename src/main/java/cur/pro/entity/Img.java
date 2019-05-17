@@ -1,12 +1,12 @@
 package cur.pro.entity;
 
 public class Img {
-    private Integer game;
+    private Integer articleId;
 
     private String img;
 
-    public Img(Integer game, String img) {
-        this.game = game;
+    public Img(Integer articleId, String img) {
+        this.articleId = articleId;
         this.img = img;
     }
 
@@ -14,12 +14,12 @@ public class Img {
         super();
     }
 
-    public Integer getGame() {
-        return game;
+    public Integer getArticleId() {
+        return articleId;
     }
 
-    public void setGame(Integer game) {
-        this.game = game;
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
 
     public String getImg() {

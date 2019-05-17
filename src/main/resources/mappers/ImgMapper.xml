@@ -3,31 +3,46 @@
 <mapper namespace="cur.pro.mapper.ImgMapper" >
   <resultMap id="BaseResultMap" type="cur.pro.entity.Img" >
     <constructor >
-      <arg column="game" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="article_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="img" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <insert id="insert" parameterType="cur.pro.entity.Img" >
-    insert into img (game, img)
-    values (#{game,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR})
+    insert into img (article_id, img)
+    values (#{articleId,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cur.pro.entity.Img" >
     insert into img
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="game != null" >
-        game,
+      <if test="articleId != null" >
+        article_id,
       </if>
       <if test="img != null" >
         img,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="game != null" >
-        #{game,jdbcType=INTEGER},
+      <if test="articleId != null" >
+        #{articleId,jdbcType=INTEGER},
       </if>
       <if test="img != null" >
         #{img,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
+
+  <insert id="insertBatch" parameterType="list">
+    insert into img (article_id, img)
+    values
+    <foreach collection="imgs" item="img" separator=",">
+      (#{article_id, jdbcType=INTEGER}, #{img})
+    </foreach>
+  </insert>
+
+  <select id="selectByArticleId" parameterType="Integer" resultType="String">
+    select
+    img
+    from img
+    where article_id = #{article_id, jdbcType=INTEGER}
+  </select>
 </mapper>
