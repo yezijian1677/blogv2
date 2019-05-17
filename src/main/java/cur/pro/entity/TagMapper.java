@@ -1,12 +1,12 @@
 package cur.pro.entity;
 
 public class TagMapper {
-    private Integer game;
+    private Integer articleId;
 
     private Integer tag;
 
-    public TagMapper(Integer game, Integer tag) {
-        this.game = game;
+    public TagMapper(Integer articleId, Integer tag) {
+        this.articleId = articleId;
         this.tag = tag;
     }
 
@@ -14,12 +14,12 @@ public class TagMapper {
         super();
     }
 
-    public Integer getGame() {
-        return game;
+    public Integer getArticleId() {
+        return articleId;
     }
 
-    public void setGame(Integer game) {
-        this.game = game;
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
 
     public Integer getTag() {

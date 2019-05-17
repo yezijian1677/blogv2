@@ -3,31 +3,51 @@
 <mapper namespace="cur.pro.mapper.TagMapperMapper" >
   <resultMap id="BaseResultMap" type="cur.pro.entity.TagMapper" >
     <constructor >
-      <arg column="game" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="article_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="tag" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <insert id="insert" parameterType="cur.pro.entity.TagMapper" >
-    insert into tagmapper (game, tag)
-    values (#{game,jdbcType=INTEGER}, #{tag,jdbcType=INTEGER})
+    insert into tagmapper (article_id, tag)
+    values (#{articleId,jdbcType=INTEGER}, #{tag,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cur.pro.entity.TagMapper" >
     insert into tagmapper
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="game != null" >
-        game,
+      <if test="articleId != null" >
+        article_id,
       </if>
       <if test="tag != null" >
         tag,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="game != null" >
-        #{game,jdbcType=INTEGER},
+      <if test="articleId != null" >
+        #{articleId,jdbcType=INTEGER},
       </if>
       <if test="tag != null" >
         #{tag,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
+
+  <select id="selectArticleIdByTag" parameterType="Integer" resultType="Integer">
+    select article_id from tagmapper where tag = #{tag, jdbcType=INTEGER}
+  </select>
+
+  <select id="selectTagByArticleId" parameterType="Integer" resultType="Integer">
+    select tag from tagmapper where article_id = #{article_id, jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBatchByTags" parameterType="list" resultType="Integer">
+    select article_id from tagmapper
+    <where>
+      tag in
+      <foreach collection="tags" item="tag" separator="," open="(" close=")">
+        #{tag}
+      </foreach>
+    </where>
+  </select>
+
+
 </mapper>
