@@ -10,6 +10,7 @@
               <property name="location" value="classpath:jdbc.properties" />
        </bean>
        <!-- 数据库配置 -->
+
        <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
               <property name="driverClassName" value="${jdbc.driver}" />
               <property name="url" value="${jdbc.url}" />
@@ -27,7 +28,7 @@
               <property name="dataSource" ref="dataSource" />
               <!-- MyBatis的配置文件 -->
               <property name="configLocation" value="classpath:mybatis-config.xml" />
-              <property name="mapperLocations" value="classpath:mapper/*.xml" />
+              <property name="mapperLocations" value="classpath:mappers/*.xml" />
        </bean>
        <!-- mapper批量扫描 -->
        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

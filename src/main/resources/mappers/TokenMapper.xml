@@ -95,10 +95,10 @@
     where uid = #{uid, jdbcType=INTEGER}
   </select>
 
-  <update id="updateStatByDate">
-    update token set stat = #{stat, jdbcType=TINYINT}
-    where expired_time < #{date, jdbcType=TIMESTAMP}
-  </update>
+<!--  <update id="updateStatByDate">-->
+<!--    update token set stat = #{stat, jdbcType=TINYINT}-->
+<!--    where expired_time  #{date, jdbcType=TIMESTAMP}-->
+<!--  </update>-->
 
   <update id="updateStatByToken">
     update token set stat = #{stat, jdbcType=TINYINT}

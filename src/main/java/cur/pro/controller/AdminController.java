@@ -22,7 +22,7 @@ public class AdminController extends AbstractController {
 
     @GetMapping(value = "login")
     public String login(){
-        return "login";
+        return "admin/login";
     }
 
     @PostMapping(value = "login")
