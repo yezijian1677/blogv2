@@ -30,4 +30,48 @@
       </if>
     </trim>
   </insert>
+
+  <insert id="insertKindBatch" parameterType="list">
+    insert into kindmapper (article, kind)
+    values
+    <foreach collection="kinds" item="kind" separator=",">
+      (#{articleId, jdbcType=INTEGER}, #{kind, jdbcType=INTEGER})
+    </foreach>
+  </insert>
+
+  <insert id="insertArticleBatch" parameterType="list">
+    insert into kindmapper(kind, article)
+    values
+    <foreach collection="articleIds" item="articleId" separator=",">
+      (#{kind, jdbcType=INTEGER}, #{articleId, jdbcType=INTEGER})
+    </foreach>
+  </insert>
+
+  <select id="selectArticleByKind" parameterType="Integer" resultType="Integer">
+    select article from kindmapper
+    where kind = #{kind, jdbcType=INTEGER}
+  </select>
+
+  <select id="selectKindByArticleId" parameterType="Integer" resultType="Integer">
+    select kind from kindmapper
+    where article = #{articleId, jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBatchByKinds" parameterType="list" resultType="Integer">
+    select article from kindmapper
+    <where>
+      kind in
+      <foreach collection="kinds" item="kind" separator="," open="(" close=")">
+        #{kind}
+      </foreach>
+    </where>
+  </select>
+
+  <delete id="deleteByArticleId" parameterType="Integer">
+    delete from kindmapper where article = #{articleId, jdbcType=INTEGER}
+  </delete>
+
+  <delete id="deleteByKind" parameterType="Integer">
+    delete from kindmapper where kind = #{kind, jdbcType=INTEGER}
+  </delete>
 </mapper>
