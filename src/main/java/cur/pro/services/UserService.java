@@ -4,6 +4,7 @@ import cur.pro.entity.Article;
 import cur.pro.utils.Result;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface UserService {
@@ -34,7 +35,7 @@ public interface UserService {
                        Integer[] kind,
                        MultipartFile header,
                        MultipartFile[] pics,
-                       String path);
+                       String path) throws IOException;
 
     /**
      * 更新文章信息
