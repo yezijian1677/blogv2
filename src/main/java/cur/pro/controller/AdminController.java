@@ -89,5 +89,11 @@ public class AdminController extends AbstractController {
         return userService.managerKind(kind, Arrays.asList(games));
     }
 
+    @PostMapping(value = "delArticle")
+    @ResponseBody
+    public Result delArticle(Integer articleId){
+        return userService.deleteArticle(articleId);
+    }
+
 
 }

@@ -16,7 +16,7 @@ $(
                         "                            <td class=\"hidden-sm\">"+article.tags+"</td>\n" +
                         "                            <td class=\"hidden-sm\">"+article.click+"</td>\n" +
                         "                            <td>"+time+"</td>\n" +
-                        "                            <td><a href=\"update-article.html\">修改</a> <a rel=\"6\">删除</a></td>";
+                        "                            <td><a href=\"update-article.html\">修改</a> <a onclick='del(" + article.id + "," + j + ")'>删除</a></td>";
                     articleInfo.appendChild(tr);
                 }
             }
@@ -73,7 +73,7 @@ function getArticles(pagenum) {
                     "                            <td class=\"hidden-sm\">" + article.tags + "</td>\n" +
                     "                            <td class=\"hidden-sm\">" + article.click + "</td>\n" +
                     "                            <td>" + time + "</td>\n" +
-                    "                            <td><a href=\"update-article.html\">修改</a> <a rel=\"6\">删除</a></td>";
+                    "                            <td><a href=\"update-article.html\">修改</a> <a onclick='del(" + article.id + "," + j + ")'>删除</a></td>";
                 articleInfo.appendChild(tr);
             }
         }
@@ -114,4 +114,20 @@ function getArticles(pagenum) {
 
     });
 
+};
+
+
+function del(aid, j) {
+    var targetUrl = "/admin/delArticle";
+    if(window.confirm("此操作不可逆，是否确认？")){
+        $.post(targetUrl, {articleId: aid}, function (result) {
+            if (result.success){
+                alert("删除成功");
+                window.location.reload();
+            }
+            else {
+                alert(result.msg);
+            }
+        })
+    }
 }
