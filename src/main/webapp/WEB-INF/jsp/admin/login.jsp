@@ -1,41 +1,27 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: yezijian
-  Date: 2019-05-17
-  Time: 23:39
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!doctype html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Curtains_blog_admin</title>
-    <link rel="stylesheet" type="text/css" href="css/back/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/back/css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/back/css/login.css">
-    <link rel="apple-touch-icon-precomposed" href="image/back/images/icon/icon.png">
-    <link rel="shortcut icon" href="image/back/images/icon/favicon.ico">
-    <script src="js/back/js/jquery-2.1.4.min.js"></script>
-    <!--[if gte IE 9]>
-    <script src="js/back/js/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="js/back/js/html5shiv.min.js" type="text/javascript"></script>
-    <script src="js/back/js/respond.min.js" type="text/javascript"></script>
-    <script src="js/back/js/selectivizr-min.js" type="text/javascript"></script>
-    <![endif]-->
-    <!--[if lt IE 9]>
-    <script>window.location.href='upgrade-browser.html';</script>
-    <![endif]-->
+    <%@ include file="common/head.jsp" %>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/back/css/login.css">
 </head>
 
 <body class="user-select">
 <div class="container">
-    <input id="userName" type="text" placeholder="用户名" required="required">
-    <input id="userPwd" type="password" name="p" placeholder="密码" required="required">
-    <button onclick="login()">登录</button>
+    <div class="siteIcon"><img src="/image/back/images/icon/think.png" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用异清轩博客管理系统" draggable="false" /></div>
+    <div style="width: 320px; margin: 0 auto;">
+        <h2 class="form-signin-heading">管理员登录</h2>
+        <label for="userName" class="sr-only">用户名</label>
+        <input type="text" id="userName" name="username" class="form-control" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10">
+        <label for="userPwd" class="sr-only">密码</label>
+        <input type="password" id="userPwd" name="userpwd" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="login()">登录</button>
+    </div>
+
+    <div class="footer">
+        <p><a href="/Home/index.html" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">回到Curtains →</a></p>
+    </div>
 </div>
 <script src="js/bootstrap.min.js"></script>
 <script>
@@ -46,30 +32,21 @@
     $('.siteIcon img').click(function(){
         window.location.reload();
     });
-    $('#signinSubmit').click(function(){
-        if($('#userName').val() === ''){
-            $(this).text('用户名不能为空');
-        }else if($('#userPwd').val() === ''){
-            $(this).text('密码不能为空');
-        }else{
-            $(this).text('请稍后...');
-        }
-    });
 
-    function login() {
-        var username = document.getElementById("userName").value;
-        var password = document.getElementById("userPwd").value;
+    function login(){
+        var targetUrl = "/admin/login";
+        var username = $('#userName').val();
+        var password = $('#userPwd').val();
 
-        $.post("/admin/login", {username: username, password: password}, function (result) {
-            if (result.success()){
-                alert("success");
-                // window.location.href = "/admin/index";
+        $.post(targetUrl, {username: username, password: password}, function (result) {
+            if (result.success) {
+               window.location.href = "/admin/index";
             } else {
                 alert(result.msg);
             }
-        })
+        });
     }
+
 </script>
 </body>
 </html>
-

@@ -41,7 +41,7 @@ public class AdminController extends AbstractController {
 
     @GetMapping(value = "index")
     public String indexPage() {
-        return "index";
+        return "/admin/index";
     }
 
     @PostMapping(value = "getArticles")
