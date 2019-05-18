@@ -11,6 +11,7 @@
       <arg column="ctime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="utime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="catagory_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="cur.pro.entity.Article" >
@@ -27,7 +28,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, keywords, describe, click, ctime, utime, catagory_id
+    id, title, keywords, `describe`, click, ctime, utime, catagory_id, content
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -35,8 +36,6 @@
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from article
     where id = #{id,jdbcType=INTEGER}
   </select>
