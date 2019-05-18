@@ -41,10 +41,10 @@ public class AdminController extends AbstractController {
 
     @GetMapping(value = "index")
     public String indexPage() {
-        return "/admin/index";
+        return "admin/article";
     }
 
-    @PostMapping(value = "getArticles")
+    @PostMapping(value = "article")
     @ResponseBody
     public Result getArticles(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
         return userService.getArticles(page);

@@ -6491,7 +6491,7 @@
     };
 
     this.nodeFromItem = function ($item) {
-      var hint = hints[$item.data('index')];
+      var hint = hints[$item.data('article.jsp')];
       var item = $item.data('item');
       var node = hint.content ? hint.content(item) : item;
       if (typeof node === 'string') {

@@ -13,9 +13,9 @@
 <head>
     <%@ include file="common/head.jsp"%>
     <title>Post</title>
+    <script src="/js/back/js/article.js" type="text/javascript"></script>
 
 </head>
-
 <body class="user-select">
 <section class="container-fluid">
     <%@ include file="common/header.jsp"%>
@@ -32,7 +32,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">选择</span></th>
+                            <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">编号</span></th>
                             <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">标题</span></th>
                             <th><span class="glyphicon glyphicon-list"></span> <span class="visible-lg">栏目</span></th>
                             <th class="hidden-sm"><span class="glyphicon glyphicon-tag"></span> <span class="visible-lg">标签</span></th>
@@ -41,16 +41,8 @@
                             <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td><input type="checkbox" class="input-control" name="checkbox[]" value="" /></td>
-                            <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
-                            <td>这个是栏目</td>
-                            <td class="hidden-sm">PHP、JavaScript</td>
-                            <td class="hidden-sm">0</td>
-                            <td>2015-12-03</td>
-                            <td><a href="update-article.html">修改</a> <a rel="6">删除</a></td>
-                        </tr>
+                        <tbody id="articleInfo">
+<%--                            info--%>
                         </tbody>
                     </table>
                 </div>
@@ -62,14 +54,8 @@
                                 <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="删除全部选中" name="checkbox_delete">删除</button>
                             </div>
                         </div>
-                        <ul class="pagination pagenav">
-                            <li class="disabled"><a aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a> </li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>
+                        <ul id="paging_1">
+
                         </ul>
                     </nav>
                 </footer>
