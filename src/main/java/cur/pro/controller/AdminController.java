@@ -1,6 +1,7 @@
 package cur.pro.controller;
 
 import cur.pro.entity.Article;
+import cur.pro.services.KindService;
 import cur.pro.services.UserService;
 import cur.pro.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class AdminController extends AbstractController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private KindService kindService;
 
     @GetMapping(value = "login")
     public String login(){
@@ -103,6 +106,18 @@ public class AdminController extends AbstractController {
     @GetMapping(value = "kind")
     public String kindPage(){
         return "admin/kind";
+    }
+
+    @GetMapping(value = "getKinds")
+    @ResponseBody
+    public Result getKindAll(){
+        return kindService.getAll();
+    }
+
+    @PostMapping(value = "delKind")
+    @ResponseBody
+    public Result delKind(Integer id){
+        return userService.delKind(id);
     }
 
 

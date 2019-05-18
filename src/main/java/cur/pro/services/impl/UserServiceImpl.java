@@ -189,6 +189,14 @@ public class UserServiceImpl implements UserService {
         return Result.success();
     }
 
+    public Result delKind(Integer id) {
+        if (id == null) {
+            return Result.fail(MsgCenter.ERROR_PARAMS);
+        }
+        kindMapper.deleteByPrimaryKey(id);
+        return Result.success();
+    }
+
     private List<ArticleDTO> paresArticleDTO(List<Article> articles){
         List<ArticleDTO> articleDTOList = new ArrayList<ArticleDTO>();
         for (Article article : articles){

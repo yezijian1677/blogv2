@@ -88,4 +88,6 @@ public interface UserService {
      */
     Result managerKind(Integer kind, List<Integer> articles);
 
+    Result delKind(Integer id);
+
 }
