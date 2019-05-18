@@ -50,6 +50,11 @@ public class AdminController extends AbstractController {
         return userService.getArticles(page);
     }
 
+    @GetMapping(value = "addArticle")
+    public String addPage(){
+        return "admin/addArticle";
+    }
+
     @PostMapping(value = "addArticle")
     @ResponseBody
     public Result addArticle(Article article, Integer[] kinds, MultipartFile header,
@@ -93,6 +98,11 @@ public class AdminController extends AbstractController {
     @ResponseBody
     public Result delArticle(Integer articleId){
         return userService.deleteArticle(articleId);
+    }
+
+    @GetMapping(value = "kind")
+    public String kindPage(){
+        return "admin/kind";
     }
 
 
