@@ -12,6 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/css/back/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/back/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/back/css/font-awesome.min.css">
 <link rel="apple-touch-icon-precomposed" href="/image/back/images/icon/icon.png">
 <link rel="shortcut icon" href="/image/back/images/icon/favicon.ico">
 <script src="/js/back/js/jquery-2.1.4.min.js"></script>
